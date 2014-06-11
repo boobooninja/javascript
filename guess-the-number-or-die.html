@@ -1,0 +1,164 @@
+<html>
+<head>
+  <title>Guess the Number or Die!</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
+  <style>
+    .grey-border { border: 2px solid grey; }
+    .yellow-border { border: 2px solid yellow; }
+    .red-border { border: 2px solid red; }
+  </style>
+</head>
+<body>
+  <div class="panel clearfix">
+    <div class="row">
+      <h1 class="text-center">Guess the Number or Die!</h1>
+    </div>
+    <div class="row center">
+      <div class="large-6 column">
+        <form id="my-form">
+          <input type="text" id="my-input" placeholder="Type 'play' and hit enter to start a game." />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    (function() {
+
+      var validate = function(number) {
+        var hitMine = checkMines(number);
+
+        if (number === secretNumber) {
+          active = false;
+          clearColor();
+          setPlaceholder(number + " is Correct! Type 'play' to play again.");
+          return true
+        }
+
+        if (typeof(hitMine) === 'boolean') {
+          active = false;
+          setPlaceholder(number + " hit a Mine! Type 'play' to play again.");
+          return true
+        }
+
+        if (number < secretNumber) {
+          setPlaceholder(number + " is too low! " + hitMine + " Try again.");
+          return false
+        } else if (number > secretNumber) {
+          setPlaceholder(number + " is too high! " + hitMine + " Try again.");
+          return false
+        }
+      };
+
+      var checkMines = function(number) {
+        var closest = 100;
+        for(var i = 0; i < mineArray.length; i++) {
+          var distance = Math.abs(mineArray[i] - number);
+
+          if ( mineArray[i] === number) {
+            return true
+          } else if (distance < closest) {
+            closest = distance;
+          }
+        }
+
+        setColor(closest);
+
+        return "Mine is " + closest + " spaces away.";
+      };
+
+      var setColor = function(num) {
+        if (num === 1) {
+          $("input").addClass('red-border');
+        } else if (num > 1 && num < 6) {
+          $("input").addClass('yellow-border');
+        } else {
+          $("input").addClass('grey-border');
+        }
+      };
+
+      var clearColor = function() {
+        // $("input").css({'border': 'none'});
+        $("input").removeClass('grey-border');
+        $("input").removeClass('yellow-border');
+        $("input").removeClass('red-border');
+      };
+
+      var setPlaceholder = function(text) {
+        $('input').attr("placeholder", text);
+      };
+
+      var clearInput = function() {
+        $('input').val('');
+      };
+
+      var play = function(text) {
+        if (text.length === 0) {
+          setPlaceholder("Enter a number from 1 - 100");
+        } else {
+          var num = parseInt( text );
+
+          if ( isNaN(num) ) {
+            setPlaceholder(num + " is not a number. Enter a number from 1 - 100");
+          } else {
+            validate(num);
+          }
+        }
+      };
+
+      var generateNumber = function() {
+        return parseInt(Math.random() * 100, 10) + 1;
+      };
+
+      $('#my-form').on('submit', function() {
+        var answer = $("input").val();
+        clearInput();
+        console.log("answer: " + answer);
+
+        if (answer === 'play') {
+          secretNumber = generateNumber();
+          mine1 = generateNumber();
+          mine2 = generateNumber();
+          mine3 = generateNumber();
+
+          mineArray = [mine1, mine2, mine3];
+
+          active = true;
+
+          console.log("secretNumber: " + secretNumber);
+          console.log("mine1: " + mine1);
+          console.log("mine2: " + mine2);
+          console.log("mine3: " + mine3);
+
+          setPlaceholder("Enter a number from 1 - 100");
+        } else if (active) {
+          play(answer);
+        } else {
+          setPlaceholder("Type 'play' and hit enter to start a game.");
+        }
+        return false;
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+<!--
+Generates and stores a secret, random number
+Prompts the user for a number between 1 and 100
+Responds to the user's number:
+If higher, it says to pick lower
+If lower, it says to pick higher
+Repeats steps 2 and 3 until the user picks the correct number
+Congratulates the user when they win!
+
+Do not use a 'while' or 'for' loop. Use only functions.
+
+Use the following line to generate the secret number:
+
+1
+var secretNumber = parseInt(Math.random() * 100, 10) + 1;
+-->
