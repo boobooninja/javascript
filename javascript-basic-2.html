@@ -1,0 +1,79 @@
+<html>
+<head>
+  <title>Javascript Bare</title>
+</head>
+<body>
+  <h2>JavaScript Fun! :\</h2>
+
+<script type="text/javascript">
+  // var first = prompt("Enter your first name");
+  // var last  = prompt("Enter your last name");
+  // alert(first + ' ' + last);
+
+  // var string = prompt("Enter a string").toUpperCase();
+  // alert(string);
+
+  // var first = prompt("Enter your first name");
+  // var last  = prompt("Enter your last name");
+  // alert(first + ' ' + last.toUpperCase());
+
+  // var age = parseInt( prompt("Enter your age:") );
+  // if (age < 21) {
+  //   alert('You is too young sucka!');
+  // } else if (age === 21) {
+  //   alert('Welcome legal aged person');
+  // } else if (age < 0 || age > 100) {
+  //   alert('Get the #@!$ out of here!');
+  // }
+
+  // var num = prompt("Enter a number");
+  // if (num % 7 === 0) {
+  //   alert("lucky");
+  // }
+  // if (num % 2 === 0) {
+  //   alert("You are an even steven");
+  // }
+
+  // var str1 = prompt("first word");
+  // var str2 = prompt("second word");
+  // var str3 = prompt("third word");
+  // alert(str3 + str2 + str1);
+
+  function password() {
+    var count = 0;
+    var secret = 'secret';
+
+    function valid(pwd) {
+      if (pwd === secret){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function getPass() {
+      var pwd = prompt('Enter password');
+      count++;
+      return pwd;
+    }
+
+    function tryIt() {
+      if ( valid( getPass() ) ) {
+        alert("access granted");
+      } else if (count < 3) {
+        alert("access denied");
+        tryIt();
+      } else {
+        alert("too many tries");
+      }
+    }
+
+    tryIt();
+  }
+
+  password();
+
+</script>
+
+</body>
+</html>
