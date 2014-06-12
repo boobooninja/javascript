@@ -1,0 +1,47 @@
+.container {
+  height: 100%;
+  margin-top: 20%;
+}
+
+.panel {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0 auto;
+  width: 75%;
+}
+
+#my-input.grey-border {
+  border: 2px solid grey;
+}
+
+#my-input.yellow-border {
+  border: 2px solid yellow;
+}
+
+#my-input.red-border {
+  border: 2px solid red;
+}
+
+#my-box.grey-box {
+  background: grey;
+}
+
+#my-box.yellow-box {
+  background: yellow;
+}
+
+#my-box.red-box {
+  background: red;
+}
+
+
+#my-input {
+  text-align: center;
+}
+
+@media all and (max-width: 64rem) {
+  .main {
+    max-width: 90%;
+  }
+}
