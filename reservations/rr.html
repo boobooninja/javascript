@@ -1,38 +1,50 @@
 <html>
 <head>
   <title>Restaurant Reservations</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-<button id="claim">Claim a Reservatios</button>
-<button id="reserve">Make a Reservatios</button>
+  <div class="container">
+    <div id="my-box" class="panel clearfix">
+      <div class="row">
+        <h1 class="text-center">Reservation Center</h1>
+      </div>
+      <div class="row center">
+        <div class="large-12 column">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
+          <form id="reserve-form">
+            <input type="text" placeholder="Type your name and press enter." />
+          </form>
 
-var reservations = {
-  'Billy': { claimed: false }
-};
+          <form id="claim-form">
+            <input type="text" placeholder="Type your name and press enter." />
+          </form>
 
-$('#claim').on('click', function (e) {
-  var name = prompt("What is your name?");
-  if (reservations[name]) {
-    if (reservations[name].claimed) {
-      alert("The reservation for " + name + " has already been claimed.");
-    } else {
-      reservations[name].claimed = true;
-      alert("Welcome "+ name);
-    }
-  } else {
-    alert("No reservation under that name!");
-  }
-});
+          <div id="button-box">
+            <div class="row">
+              <div class="large-6 column text-center">
+                <a href="#" id="reserve" class="button">Make a Reservatios</a>
+                <a href="#" id="claim" class="button">Claim a Reservatios</a>
+              </div>
+            </div>
+          </div>
 
-$('#reserve').on('click', function (e) {
-  var name = prompt("What name should we reserve under?");
-  reservations[name] = { claimed: false };
-});
+        </div>
+      </div>
+    </div>
 
-</script>
+    <div id="alert-box" class="panel clearfix">
+      <div class="row">
+        <h3 id="status" class="text-center"></h3>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/reservations.js"></script>
 </body>
 </html>

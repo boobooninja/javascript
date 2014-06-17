@@ -1,0 +1,38 @@
+/** {
+  border: 2px solid red;
+}
+*/
+.container {
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.panel {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  /*padding: 20px;*/
+  margin: 0 auto;
+  width: 75%;
+}
+
+#reserve-form {
+  margin-top: 1rem;
+}
+
+input {
+  text-align: center;
+}
+
+@media all and (max-width: 64rem) {
+  .main {
+    max-width: 90%;
+  }
+}
+
+#button-box {
+  margin-top: 1rem;
+}
+
+#alert-box {
+  margin-top: 1rem;
+}
