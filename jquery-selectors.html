@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title>jQuery Selectors</title>
+  <style type="text/css">
+    .item {
+      padding: 8px;
+      width: 200px;
+      background: #ccc;
+    }
+    .item.active {
+      background: #cfc;
+    }
+  </style>
+</head>
+<body>
+
+<form class="new-item">
+  <label>Pre-Filled Name Input: </label><input class="name" type="text" value="Mitch Thomson" />
+  <br />
+  <label>Pre-Filled Price Input: </label>
+  <input type="text" class="price" value="Mitch is $19">
+  <br />
+  <input class="submit" type="submit" value="SUBMIT!"></input>
+</form>
+
+<div id="items">
+  <div class="item" data-percent="0.10">
+    <label>Item One - Qty:<span>12</span></label>
+    <div class="price">$<span>11</span></div>
+    <button>Buy Me</button>
+  </div>
+
+  <div class="item active" data-percent="0.15">
+    <label>Item Two - Qty:<span>3</span></label>
+    <div class="price">$<span>22</span></div>
+    <button>Buy Me</button>
+  </div>
+
+  <div class="item" data-percent="0.20">
+    <label>Item Three - Qty:<span>1</span></label>
+    <div class="price">$<span>33</span></div>
+    <button>Buy Me</button>
+  </div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+// TODO
+// $('.items').eq(1);
+$('#items').on('click', '.item button', function() {
+  var item = $(this).parent();
+  var span = item.find('label span');
+  var count = span.text();
+
+  span.text(count - 1);
+  count = span.text();
+  updatePrice();
+
+  if (count < 1) {
+    item.remove();
+  }
+});
+
+var updatePrice = function() {
+  $('.item').each(function(index){
+    var qty = $(this).find('label span').text();
+    var percent = $(this).data('percent');
+    var price = $(this).find('.price span').text();
+    var discount = price * percent;
+console.log('percent ' + percent);
+console.log('price ' + price);
+console.log('discount ' + discount);
+
+console.log('both ' + (price + discount));
+
+    if (qty > 10) {
+      var newPrice = price - discount;
+      $(this).find('.price span').text(newPrice.toFixed(2));
+    } else if (qty < 3) {
+      var newPrice = price + discount;
+      $(this).find('.price span').text(newPrice.toFixed(2));
+    }
+  });
+};
+
+$(document).on('ready', function() {
+  updatePrice();
+});
+
+</script>
+</body>
+</html>

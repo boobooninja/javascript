@@ -1,9 +1,21 @@
 <html>
 <head>
   <title>Javascript Bare</title>
+
+<style>
+  .jumping-bean {
+    position: absolute; top: 100px; right: 100px;
+    font-size: 2em;
+  }
+</style>
+
 </head>
 <body>
   <h2>JavaScript Fun! :\</h2>
+
+<button class='jumping-bean'>how u bean</button>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script type="text/javascript">
   // var first = prompt("Enter your first name");
@@ -39,39 +51,56 @@
   // var str3 = prompt("third word");
   // alert(str3 + str2 + str1);
 
-  function password() {
-    var count = 0;
-    var secret = 'secret';
+  // function password() {
+  //   var count = 0;
+  //   var secret = 'secret';
 
-    function valid(pwd) {
-      if (pwd === secret){
-        return true;
-      } else {
-        return false;
-      }
-    }
+  //   function valid(pwd) {
+  //     if (pwd === secret){
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
 
-    function getPass() {
-      var pwd = prompt('Enter password');
-      count++;
-      return pwd;
-    }
+  //   function getPass() {
+  //     var pwd = prompt('Enter password');
+  //     count++;
+  //     return pwd;
+  //   }
 
-    function tryIt() {
-      if ( valid( getPass() ) ) {
-        alert("access granted");
-      } else if (count < 3) {
-        alert("access denied");
-        tryIt();
-      } else {
-        alert("too many tries");
-      }
-    }
+  //   function tryIt() {
+  //     if ( valid( getPass() ) ) {
+  //       alert("access granted");
+  //     } else if (count < 3) {
+  //       alert("access denied");
+  //       tryIt();
+  //     } else {
+  //       alert("too many tries");
+  //     }
+  //   }
 
-    tryIt();
-  }
+  //   tryIt();
+  // }
 
-  password();
+  // password();
+
+  var myInverval;
+
+  var moveButton = function() {
+    $('.jumping-bean').css({"position":"absolute", "top":randomPx, "right":randomPx});
+    setTimeout(moveButton, 1000);
+  };
+
+  $(document).on('click', '.jumping-bean', moveButton);
+
+  // $(document).on('click', function() {
+  //   if (myInverval) { clearInterval(myInverval); }
+  // });
+
+var randomPx = function () {
+  return Math.floor(Math.random() * 500) + 'px';
+};
 
 </script>
 
