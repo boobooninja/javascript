@@ -4,8 +4,12 @@
       'Billy': { claimed: false }
     },
     this.setReservation = function(name) {
-      this.reservations[name] = { claimed: false };
-      return true;
+      if (name.length !== 0) {
+        this.reservations[name] = { claimed: false };
+        return true;
+      } else {
+        return false;
+      }
     },
     this.hasReservation = function(name) {
       if (this.reservations[name]) {
@@ -30,20 +34,6 @@ $('#reserve-form').hide();
 $('#claim-form').hide();
 $('#alert-box').hide();
 
-// $('#claim').on('click', function (e) {
-//   var name = prompt("What is your name?");
-//   if (rr.reservations[name]) {
-//     if (rr.reservations[name].claimed) {
-//       alert("The reservation for " + name + " has already been claimed.");
-//     } else {
-//       rr.reservations[name].claimed = true;
-//       alert("Welcome "+ name);
-//     }
-//   } else {
-//     alert("No reservation under that name!");
-//   }
-// });
-
 $('#claim').on('click', function (e) {
   e.preventDefault();
   $('#claim-form').show();
@@ -53,6 +43,7 @@ $('#claim').on('click', function (e) {
 $(document).on('submit', '#claim-form', function(e) {
   e.preventDefault();
   var name = $(this).find('input').val();
+  $(this).find('input').val('');
   console.log('claim: ' + name);
 
   if (rr.hasReservation(name)) {
@@ -86,6 +77,7 @@ $(document).on('submit', '#reserve-form', function(e) {
   e.preventDefault();
 
   var name = $(this).find('input').val();
+  $(this).find('input').val('');
   console.log('reserve: ' + name);
   if ( rr.setReservation(name) ) {
     $('#status').text("Reservation has been set for " + name);
