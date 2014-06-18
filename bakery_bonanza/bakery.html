@@ -40,33 +40,67 @@ var bakery = {
       flour: 2,
       eggs: 1,
       sugar: 1
+    },
+    cookie: {
+      flour: 1,
+      eggs: 2,
+      sugar: 2,
+      spice: 1
     }
-    // TODO: Create required ingredients for cookie
   },
   make: function (goodType) {
     console.log('Attempting to make a:', goodType);
     var req = this.goodRequirements[goodType];
 
-    // TODO: Only make if we have enough ingredients
-    if (true) {
-      // TODO: Reduce the bakery's supplies by the required amount
+    if (this.haveIngredients(req)) {
+      this.useIngredients(req);
       this.updateIngredientsList();
       console.log('The bakery made a ' + goodType + '!');
 
-      // TODO: Add class goodType class to div
       var goodDiv = $('<div>');
+      goodDiv.addClass(goodType);
       $('#bakery .display').append(goodDiv);
+    } else {
+      alert("We don't have enough ingredients!");
+    }
+  },
+  haveIngredients: function(req) {
+    if( this.supplies.flour > req.flour &&
+        this.supplies.eggs > req.eggs &&
+        this.supplies.sugar > req.sugar) {
+      if(req.spice) {
+        if( this.supplies.spice > req.spice) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  },
+  useIngredients: function(req) {
+    this.supplies.flour -= req.flour;
+    this.supplies.eggs -= req.eggs;
+    this.supplies.sugar -= req.sugar;
+    if(req.spice) {
+      this.supplies.spice -= req.spice;
     }
   },
   updateIngredientsList: function () {
     $('.ingredients .flour span').text(this.supplies.flour);
-    // TODO: Update rest of ingredients
+    $('.ingredients .eggs span').text(this.supplies.eggs);
+    $('.ingredients .sugar span').text(this.supplies.sugar);
+    $('.ingredients .spice span').text(this.supplies.spice);
   }
 };
 
 $('#bakery .make').on('click', function (e) {
-  var goodType = $(e.currentTarget).data('good-type');
+  var goodType = $(e.currentTarget).data('good-type'); // 'cupcake' or 'cookie'
   // TODO: Make the good
+  bakery.make(goodType);
 });
 
 bakery.updateIngredientsList();
