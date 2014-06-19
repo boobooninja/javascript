@@ -32,7 +32,7 @@
         // goodDiv.addClass(goodType);
         // $('#bakery .display').append(goodDiv);
       } else {
-        alert("We don't have enough ingredients!");
+        // alert("We don't have enough ingredients!");
         return false;
       }
     };

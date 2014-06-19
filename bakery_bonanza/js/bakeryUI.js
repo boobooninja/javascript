@@ -10,6 +10,11 @@ $('.button.make').on('click', function (e) {
       html = '<div><img class="goods" src="http://www.clipartbest.com/cliparts/eTM/AA9/eTMAA9XTn.jpeg"><div>'
     }
     $('#display-box').find('.display').append(html);
+  } else {
+    $('#notification').text("We don't have enough ingredients!");
+    setTimeout(function() {
+      $('#notification').text("");
+    }, 5000);
   }
 });
 
