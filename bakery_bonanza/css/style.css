@@ -1,0 +1,79 @@
+/** {
+  border: 2px solid red;
+}
+
+*/.container {
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.panel {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  /*padding: 20px;*/
+  margin: 0 auto;
+  width: 75%;
+}
+
+img.boobooninja_pic {
+  height: 50px;
+  width: 50px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  box-shadow: 0 0 0 5px #fff;
+  background-color: #fff;
+}
+
+img.goods {
+  height: 100px;
+  width: 100px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0 0 5px #fff;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+#reserve-form {
+  margin-top: 1rem;
+}
+
+input {
+  text-align: center;
+}
+
+@media all and (max-width: 64rem) {
+  .main {
+    max-width: 90%;
+  }
+}
+
+.button {
+ width: 186px;
+}
+
+#button-box {
+  margin-top: 1rem;
+}
+
+#alert-box {
+  margin-top: 1rem;
+}
+
+#display-box .display div {
+  width: 150px;
+  height: 125px;
+  float: left;
+  margin-top: 20px;
+}
+
+#display-box .display .cupcake {
+  background: url("http://i.imgur.com/9ix2JRZ.jpg");
+}
+
+#display-box .display .cookie {
+  /*background: url("http://i.imgur.com/Yxq78qn.jpg");*/
+  background: url("http://www.clker.com/cliparts/p/Q/w/g/Y/X/cookie-md.png");
+  width: 100px;
+  height: 100px;
+}

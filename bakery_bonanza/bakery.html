@@ -1,15 +1,12 @@
 <html>
 <head>
   <title>Bakery Bonanza</title>
-  <style type="text/css">
-  #bakery .display div { width: 200px; height: 200px; float: left; }
-  #bakery .display .cupcake { background: url("http://i.imgur.com/9ix2JRZ.jpg"); }
-  #bakery .display .cookie { background: url("http://i.imgur.com/Yxq78qn.jpg"); }
-  </style>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-<div id="bakery">
+<!-- <div id="bakery">
   <button class="make" data-good-type="cupcake">Make Cupcake</button>
   <button class="make" data-good-type="cookie">Make Cookie</button>
   <h4>Available Ingredients:</h4>
@@ -23,88 +20,61 @@
   <h3>Food Display Case</h3>
   <div class="display"></div>
 </div>
+ -->
 
+  <div class="container">
+    <div id="my-box" class="panel clearfix">
+      <div class="row">
+        <div class="small-2 medium-2 large-2 column text-center">
+          <img class="boobooninja_pic" src="https://silvrback.s3.amazonaws.com/uploads/d6c4e7df-32d6-4a5e-8461-2a097d9ee4f2/weeninja_large.jpg">
+        </div>
+        <div class="small-10 medium-10 large-10 column text-center">
+          <h1>BooBooNinja Bakery</h1>
+        </div>
+      </div>
+      <div class="row center">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
+        <div class="large-12 column">
+          <div class="row">
+            <div id="button-box">
+              <div class="small-6 medium-6 large-6 column text-center">
+                <a href="#" class="button make" data-good-type="cupcake">Make a Cupcake</a>
+                <a href="#" class="button make" data-good-type="cookie">Make a Cookie</a>
+              </div>
+            </div>
 
-var bakery = {
-  supplies: {
-    flour: 4,
-    eggs: 12,
-    sugar: 17,
-    spice: 5
-  },
-  goodRequirements: {
-    cupcake: {
-      flour: 2,
-      eggs: 1,
-      sugar: 1
-    },
-    cookie: {
-      flour: 1,
-      eggs: 2,
-      sugar: 2,
-      spice: 1
-    }
-  },
-  make: function (goodType) {
-    console.log('Attempting to make a:', goodType);
-    var req = this.goodRequirements[goodType];
+            <div id="ingredients-box">
+              <div class="small-6 medium-6 large-6 column">
+                <h4>Available Ingredients:</h4>
+                <ul class="ingredients">
+                  <li class="flour">Flour: <span></span></li>
+                  <li class="eggs">Eggs: <span></span></li>
+                  <li class="sugar">Sugar: <span></span></li>
+                  <li class="spice">Spice: <span></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    if (this.haveIngredients(req)) {
-      this.useIngredients(req);
-      this.updateIngredientsList();
-      console.log('The bakery made a ' + goodType + '!');
+      </div>
+    </div>
 
-      var goodDiv = $('<div>');
-      goodDiv.addClass(goodType);
-      $('#bakery .display').append(goodDiv);
-    } else {
-      alert("We don't have enough ingredients!");
-    }
-  },
-  haveIngredients: function(req) {
-    if( this.supplies.flour > req.flour &&
-        this.supplies.eggs > req.eggs &&
-        this.supplies.sugar > req.sugar) {
-      if(req.spice) {
-        if( this.supplies.spice > req.spice) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
-    } else {
-      return false;
-    }
-  },
-  useIngredients: function(req) {
-    this.supplies.flour -= req.flour;
-    this.supplies.eggs -= req.eggs;
-    this.supplies.sugar -= req.sugar;
-    if(req.spice) {
-      this.supplies.spice -= req.spice;
-    }
-  },
-  updateIngredientsList: function () {
-    $('.ingredients .flour span').text(this.supplies.flour);
-    $('.ingredients .eggs span').text(this.supplies.eggs);
-    $('.ingredients .sugar span').text(this.supplies.sugar);
-    $('.ingredients .spice span').text(this.supplies.spice);
-  }
-};
+    <div id="display-box" class="panel clearfix">
+      <div class="row text-center">
+        <h4>Bakery Display Case</h4>
+      </div>
+      <div class="row text-center">
+        <div class="small-block-grid-2 medium-block-grid-3 large-block-grid-4 display">
 
-$('#bakery .make').on('click', function (e) {
-  var goodType = $(e.currentTarget).data('good-type'); // 'cupcake' or 'cookie'
-  // TODO: Make the good
-  bakery.make(goodType);
-});
+        </div>
+      </div>
+    </div>
 
-bakery.updateIngredientsList();
+  </div>
 
-</script>
+  <script src="vendor/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="js/bakery.js"></script>
+  <script type="text/javascript" src="js/bakeryUI.js"></script>
 </body>
 </html>
