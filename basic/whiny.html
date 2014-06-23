@@ -1,0 +1,32 @@
+
+<html>
+<head>
+  <title>Poke Me</title>
+</head>
+<body>
+
+<label id="response">D: </label>
+<br />
+<input id="poke" type="button" value="Poke" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+  var whinyPerson = {
+    pokeCount: 0,
+    poke: function() {
+      this.pokeCount++;
+      $('#response').append(" ow");
+      for(var i = 0; i < this.pokeCount; i++) {
+        $('#response').append("!");
+      }
+    }
+  };
+
+  $('#poke').on('click', function(e){
+    e.preventDefault();
+    whinyPerson.poke();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+<head>
+  <title>Javascript Bare</title>
+
+<style>
+
+</style>
+
+</head>
+<body>
+  <h2>JavaScript Fun! :\</h2>
+
+  <!-- <a href="#" id="fire-laser">Fire Laser</a> -->
+  <!-- <a href="http://google.com" id="google-link">Click me</a> -->
+
+<!-- <label>Ow! (<span id="poke-count">0</span>)</label>
+<input id="poke" type="submit" />
+ -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+function createBattery(num) {
+  return {
+    energy: num,
+    use: function(num) {
+      if (num < this.energy) {
+        this.energy -= num;
+      }
+    }
+  };
+}
+
+var battery = createBattery(3);
+console.log('Battery should have 3 energy:', battery.energy);
+
+battery.use(2);
+console.log('Battery should have 1 energy:', battery.energy);
+
+battery.use(5);
+console.log('Battery should have 1 energy:', battery.energy);
+
+// var aquarium = {
+//   goldfish: 3,
+//   betafish: 1,
+//   octopusfish: 2,
+//   gorillafish: 1
+// }
+// // You will learn a better way to do this later
+// var properties = ['goldfish', 'betafish', 'octopusfish', 'gorillafish'];
+// for (var i = 0; i < properties.length; i += 1) {
+//   var fishType = properties[i];
+//   console.log(fishType + ': ' + aquarium[fishType]);
+// }
+
+// function strMult(str, num) {
+//   var newStr = "";
+//   for(var i = 0; i < num; i++) {
+//     newStr = newStr + str;
+//   }
+//   return newStr;
+// }
+
+// console.log("Should be whatwhat:", strMult('what', 2));
+// console.log("Should be mikemikemikemikemike:", strMult('mike', 5));
+
+// var count = 0;
+// var x = "Some text";
+// var nag = function () {
+//   count = count + 1;
+//   console.log(x + " " + count);
+// };
+// setInterval(nag, 2000);
+
+
+//   $('#poke').on('click', function(e) {
+//     e.preventDefault();
+
+//     var val = parseInt( $('#poke-count').text() );
+
+//     console.log(val);
+//     console.log(val + 1);
+//     $('#poke-count').text(val + 1);
+//   });
+
+
+// var health = 5;
+
+// $('#fire-laser').on('click', function() {
+//   if (health === 0) {
+//     console.log("You're dead.");
+//   }
+//   else {
+//     health = health - 1;
+//     console.log('PEW PEW! Your health remaining is ' + health);
+//   }
+// });
+
+  // $('#google-link').on('click', function(e) {
+  //   e.preventDefault();
+
+  //   console.log("No Google for you!!! Ha! Ha! Ha!");
+  //   return false;
+  // });
+
+</script>
+
+</body>
+</html>
